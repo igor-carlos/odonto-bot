@@ -1,13 +1,9 @@
 export const firstMessage = () => {
   const hours = new Date().getHours()
   let greeting
-  if (hours < 12) {
-    greeting = "bom dia"
-  } else if (hours >= 12 && hours <= 18) {
-    greeting = "boa tarde"
-  } else {
-    greeting = "boa noite"
-  }
+  if (hours < 12) greeting = "bom dia"
+  if (hours >= 12 && hours <= 18) greeting = "boa tarde"
+  if (hours > 18) greeting = "boa noite"
   return {
     templateId: 1,
     body: `
@@ -17,7 +13,7 @@ export const firstMessage = () => {
     3.Reagendar uma consulta
     4.Consulta de parcelas pendentes 
     5.Solicitar atestado
-    6.Outros (falar com atendente)`
+    6.Desejo falar diretamente com uma atendente`
   }
 }
 
@@ -29,10 +25,50 @@ Atualmente em nosso consultório trabalhamos com:
   Prótese dentária
   Aparelhos
 
-Ficou interessado em algum serviço ?
-  0. Voltar
+Ficou interessado em algum serviço ? Deseja marcar uma consulta ?
   1. Sim
   2. Não
-  3. Não, quero falar com a atendente
-  `
+  3. Não, desejo algo mais específico, quero falar com a atendente
+  0. Voltar`
 }
+
+export const scheduleConsultation = {
+  templateId: 3,
+  body: `
+Para qual serviço você deseja marcar uma consulta ?
+  1. Clareamento dos dentes
+  2. Prótese dentária
+  3. Aparelhos`
+}
+
+export const rescheduleConsultation = {
+  templateId: 4,
+  body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+}
+
+export const findLastConsultation = {
+  templateId: 5,
+  body: `Te achei aqui e vi que você tem uma consulta marcada para o dia 20/07/2022, informe a data que deseja remarcar como o exemplo a seguir: 10/03/2021`
+}
+
+export const pendingInstallmentInquiries = {
+  templateId: 6,
+  body: `
+Verifiquei aqui que você tem 2 pendências, deseja falar com a atendente para mais detalhes ?
+  1. Sim
+  2. Não`
+}
+
+export const requestAttest = {
+  templateId: 7,
+  body: `
+Não encontrei nenhum atestado em meu ficheiro, posso te passar para a atendente ?
+  1. Sim
+  2. Não`
+}
+
+export const redirectToAttendant = {
+  templateId: 8,
+  body: `Aguarde um momento, vou chamar uma atendente para você :D`
+}
+
