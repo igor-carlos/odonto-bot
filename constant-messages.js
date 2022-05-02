@@ -41,7 +41,7 @@ Para qual serviço você deseja marcar uma consulta ?
   3. Aparelhos`
 }
 
-export const rescheduleConsultation = {
+export const enterYourNumber = {
   templateId: 4,
   body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
 }

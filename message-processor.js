@@ -1,7 +1,7 @@
 import {
   servicesOffered,
   scheduleConsultation,
-  rescheduleConsultation,
+  enterYourNumber,
   pendingInstallmentInquiries,
   requestAttest,
   redirectToAttendant
@@ -14,7 +14,7 @@ export function handleMessage(choice, lastTemplateId) {
   if (lastTemplateId === 1) {
     if (choice === 1) return servicesOffered
     if (choice === 2) return scheduleConsultation
-    if (choice === 3) return rescheduleConsultation
+    if (choice === 3) return enterYourNumber
     if (choice === 4) return pendingInstallmentInquiries
     if (choice === 5) return requestAttest
     if (choice === 6) return redirectToAttendant
@@ -22,6 +22,10 @@ export function handleMessage(choice, lastTemplateId) {
 
   if (lastTemplateId === 2) {
     if (choice === 1) return scheduleConsultation
+  }
+
+  if (lastTemplateId === 3) {
+    console.log("🌹 choice =>", choice)
   }
 
   throw new Error('flow error')
