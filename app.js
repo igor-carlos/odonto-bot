@@ -19,16 +19,31 @@ app.post("/message/receive", async function (req, res) {
   const choice = req.body.Body
   const user = req.body.From
 
-  const lastTemplateId = await client.get(`${user}-last-template-id`)
+  if (choice === '/reset') await client.del(`${user}-last-interaction`)
 
-  let reply
-  if (lastTemplateId === null) {
-    reply = firstMessage()
-  } else {
-    reply = handleMessage(choice, Number(lastTemplateId))
+  const lastInteraction = await client.get(`${user}-last-interaction`)
+
+  let lastInteractionObj
+  let lastTemplateId
+  let lastDate
+
+  if (lastInteraction) {
+    lastInteractionObj = JSON.parse(lastInteraction)
+    lastTemplateId = lastInteractionObj.lastTemplateId
+    lastDate = lastInteractionObj.lastDate
   }
 
-  await client.set(`${user}-last-template-id`, reply.templateId)
+  let reply
+  if (!lastTemplateId || (lastDate - new Date()) >= 1.8e+7) {
+    reply = firstMessage()
+  } else {
+    reply = handleMessage(Number(choice), Number(lastTemplateId))
+  }
+
+  await client.set(`${user}-last-interaction`, JSON.stringify({
+    lastTemplateId: reply.templateId,
+    lastDate: new Date()
+  }))
 
   const twiml = new twilio.twiml.MessagingResponse()
   twiml.message(reply.body)
@@ -41,5 +56,5 @@ app.post("/message/receive-status", function (req, res) {
 })
 
 app.listen(3000, () => {
-  console.log("🔥 3000")
+  console.info("server running in 3000")
 })
