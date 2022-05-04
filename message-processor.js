@@ -7,7 +7,8 @@ import {
   requestAttest,
   redirectToAttendant,
   enterYourDate,
-  enterYourHour
+  enterYourHour,
+  scheduleSuccess
 } from './constant-messages.js'
 
 export function handleMessage(choice, lastTemplateId) {
@@ -30,7 +31,7 @@ export function handleMessage(choice, lastTemplateId) {
   }
 
   if (lastTemplateId === 3) {
-    console.log(`O usuário escolheu a opção ${choice}`)
+    console.log(`O usuário escolheu a opção de consuta ${choice}`)
     return enterYourNumber
   }
 
@@ -42,6 +43,11 @@ export function handleMessage(choice, lastTemplateId) {
   if (lastTemplateId === 9) {
     console.log(`A data escolhida pelo usuário é ${choice}`)
     return enterYourHour
+  }
+
+  if (lastTemplateId === 10) {
+    console.log(`O horario escolhido pelo usuário foi ${choice}`)
+    return scheduleSuccess
   }
 
   if (lastTemplateId === 11) {
