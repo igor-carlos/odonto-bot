@@ -82,7 +82,7 @@ export const enterYourHour = {
   body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
 }
 
-export const scheduleSuccess = { 
+export const scheduleSuccess = {
   templateId: 11,
   body: `Tudo certo!, irei repassar essas infomações para o consultório e logo mais confirmarei sua consulta, qualquer dúvida estou a disposição.
     1. Ok, entendido (finalizar conversa)
