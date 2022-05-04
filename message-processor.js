@@ -2,12 +2,12 @@ import {
   firstMessage,
   servicesOffered,
   scheduleConsultation,
-  enterYourNumber,
+  enterYourNumberForSchedule,
   pendingInstallmentInquiries,
   requestAttest,
   redirectToAttendant,
-  enterYourDate,
-  enterYourHour,
+  enterYourDateForSchefule,
+  enterYourHourForSchedule,
   scheduleSuccess
 } from './constant-messages.js'
 
@@ -37,12 +37,12 @@ export function handleMessage(choice, lastTemplateId) {
 
   if (lastTemplateId === 4) {
     console.log(`O número do usuário é ${choice}`)
-    return enterYourDate
+    return enterYourDateForSchefule
   }
 
   if (lastTemplateId === 9) {
     console.log(`A data escolhida pelo usuário é ${choice}`)
-    return enterYourHour
+    return enterYourHourForSchedule
   }
 
   if (lastTemplateId === 10) {

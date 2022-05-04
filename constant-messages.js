@@ -28,8 +28,7 @@ Atualmente em nosso consultório trabalhamos com:
 Ficou interessado em algum serviço ? Deseja marcar uma consulta ?
   1. Sim
   2. Não, quero voltar ao menu anterior
-  3. Não, desejo algo mais específico, quero falar com a atendente
-  `
+  3. Não, desejo algo mais específico, quero falar com a atendente`
 }
 
 export const scheduleConsultation = {
@@ -41,7 +40,7 @@ Para qual serviço você deseja marcar uma consulta ?
   3. Aparelhos`
 }
 
-export const enterYourNumber = {
+export const enterYourNumberForSchedule = {
   templateId: 4,
   body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
 }
@@ -72,12 +71,12 @@ export const redirectToAttendant = {
   body: `Aguarde um momento, vou chamar uma atendente para você :D`
 }
 
-export const enterYourDate = {
+export const enterYourDateForSchefule = {
   templateId: 9,
   body: `Informe a data em que você quer marcar sua consulta, ex: 04/10/2022`
 }
 
-export const enterYourHour = {
+export const enterYourHourForSchedule = {
   templateId: 10,
   body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
 }
