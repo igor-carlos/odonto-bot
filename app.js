@@ -37,7 +37,10 @@ app.post("/message/receive", async function (req, res) {
   if (!lastTemplateId || (lastDate - new Date()) >= 1.8e+7) {
     reply = firstMessage()
   } else {
-    reply = handleMessage(Number(choice), Number(lastTemplateId))
+
+    reply = handleMessage(
+      choice.length <= 2 ? Number(choice) : choice,
+      Number(lastTemplateId))
   }
 
   await client.set(`${user}-last-interaction`, JSON.stringify({
