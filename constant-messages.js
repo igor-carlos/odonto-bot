@@ -27,9 +27,9 @@ Atualmente em nosso consultório trabalhamos com:
 
 Ficou interessado em algum serviço ? Deseja marcar uma consulta ?
   1. Sim
-  2. Não
+  2. Não, quero voltar ao menu anterior
   3. Não, desejo algo mais específico, quero falar com a atendente
-  0. Voltar`
+  `
 }
 
 export const scheduleConsultation = {
@@ -72,3 +72,19 @@ export const redirectToAttendant = {
   body: `Aguarde um momento, vou chamar uma atendente para você :D`
 }
 
+export const enterYourDate = {
+  templateId: 9,
+  body: `Informe a data em que você quer marcar sua consulta, ex: 04/10/2022`
+}
+
+export const enterYourHour = {
+  templateId: 10,
+  body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
+}
+
+export const scheduleSuccess = { 
+  templateId: 11,
+  body: `Tudo certo!, irei repassar essas infomações para o consultório e logo mais confirmarei sua consulta, qualquer dúvida estou a disposição.
+    1. Ok, entendido (finalizar conversa)
+    2. Não entendi muito bem, quero falar com a atendente`
+}
