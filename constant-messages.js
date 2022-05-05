@@ -104,3 +104,8 @@ export const enterYourHourForReschedule = {
   templateId: 14,
   body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
 }
+
+export const enterYourNumberForFindPendingInstallmentInquiries = {
+  templateId: 15,
+  body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+}
