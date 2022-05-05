@@ -57,7 +57,7 @@ export const pendingInstallmentInquiries = {
   body: `
 Verifiquei aqui que você tem 2 pendências, deseja falar com a atendente para mais detalhes ?
   1. Sim
-  2. Não`
+  2. Não obrigado, era só isso (finalizar conversa)`
 }
 
 export const requestAttest = {
@@ -65,7 +65,7 @@ export const requestAttest = {
   body: `
 Não encontrei nenhum atestado em meu ficheiro, posso te passar para a atendente ?
   1. Sim
-  2. Não`
+  2. Não, desejo voltar ao menu anterior`
 }
 
 export const redirectToAttendant = {
