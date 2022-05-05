@@ -1,13 +1,15 @@
-export const firstMessage = () => {
-  const hours = new Date().getHours()
+export const firstMessage = (needGreetings) => {
   let greeting
-  if (hours < 12) greeting = "bom dia"
-  if (hours >= 12 && hours <= 18) greeting = "boa tarde"
-  if (hours > 18) greeting = "boa noite"
+  if (needGreetings === undefined || needGreetings === null) {
+    const hours = new Date().getHours()
+    if (hours < 12) greeting = "Olá, bom dia, é um prazer falar com você! "
+    if (hours >= 12 && hours <= 18) greeting = "Olá, boa tarde, é um prazer falar com você! "
+    if (hours > 18) greeting = "Olá, boa noite, é um prazer falar com você! "
+  }
   return {
     templateId: 1,
     body: `
-  Olá, ${greeting}, é um prazer falar com você! Escolha uma das opções abaixo:
+  ${greeting}Escolha uma das opções abaixo:
     1.Serviços oferecidos
     2.Agendar uma consulta
     3.Reagendar uma consulta
@@ -71,7 +73,7 @@ export const redirectToAttendant = {
   body: `Aguarde um momento, vou chamar uma atendente para você :D`
 }
 
-export const enterYourDateForSchefule = {
+export const enterYourDateForSchedule = {
   templateId: 9,
   body: `Informe a data em que você quer marcar sua consulta, ex: 04/10/2022`
 }
@@ -86,4 +88,19 @@ export const scheduleSuccess = {
   body: `Tudo certo!, irei repassar essas infomações para o consultório e logo mais confirmarei sua consulta, qualquer dúvida estou a disposição.
     1. Ok, entendido (finalizar conversa)
     2. Não entendi muito bem, quero falar com a atendente`
+}
+
+export const enterYourNumberForReschedule = {
+  templateId: 12,
+  body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+}
+
+export const enterYourDateForReschedule = {
+  templateId: 13,
+  body: `Informe a data em que você quer marcar sua consulta, ex: 04/10/2022`
+}
+
+export const enterYourHourForReschedule = {
+  templateId: 14,
+  body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
 }

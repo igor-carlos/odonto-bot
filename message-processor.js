@@ -1,3 +1,5 @@
+import { enterYourHourForReschedule } from './constant-messages.js'
+import { enterYourDateForReschedule } from './constant-messages.js'
 import {
   firstMessage,
   servicesOffered,
@@ -6,7 +8,7 @@ import {
   pendingInstallmentInquiries,
   requestAttest,
   redirectToAttendant,
-  enterYourDateForSchefule,
+  enterYourDateForSchedule,
   enterYourHourForSchedule,
   scheduleSuccess
 } from './constant-messages.js'
@@ -18,7 +20,7 @@ export function handleMessage(choice, lastTemplateId) {
   if (lastTemplateId === 1) {
     if (choice === 1) return servicesOffered
     if (choice === 2) return scheduleConsultation
-    if (choice === 3) return enterYourNumber
+    if (choice === 3) return enterYourNumberForReschedule
     if (choice === 4) return pendingInstallmentInquiries
     if (choice === 5) return requestAttest
     if (choice === 6) return redirectToAttendant
@@ -32,12 +34,12 @@ export function handleMessage(choice, lastTemplateId) {
 
   if (lastTemplateId === 3) {
     console.log(`O usuário escolheu a opção de consuta ${choice}`)
-    return enterYourNumber
+    return enterYourNumberForSchedule
   }
 
   if (lastTemplateId === 4) {
     console.log(`O número do usuário é ${choice}`)
-    return enterYourDateForSchefule
+    return enterYourDateForSchedule
   }
 
   if (lastTemplateId === 9) {
@@ -56,6 +58,21 @@ export function handleMessage(choice, lastTemplateId) {
       return firstMessage;
     }
     if (choice === 2) return redirectToAttendant
+  }
+
+  if (lastTemplateId === 12) {
+    console.log(`O celular do usuário que quer remarcar uma consulta é ${choice}`)
+    return enterYourDateForReschedule
+  }
+
+  if (lastTemplateId === 13) {
+    console.log(`A data que o usuário quer remarcar a consulta é para ${choice}`)
+    return enterYourHourForReschedule
+  }
+
+  if (lastTemplateId === 14) {
+    console.log(`O horário que o usuário quer remarcar sua consulta é de ${choice}`)
+    return scheduleSuccess
   }
 
   throw new Error('flow error')
