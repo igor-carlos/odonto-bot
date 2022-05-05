@@ -10,12 +10,12 @@ export const firstMessage = (needGreetings) => {
     templateId: 1,
     body: `
   ${greeting ? greeting : ''}Escolha uma das opções abaixo:
-    1.Serviços oferecidos
-    2.Agendar uma consulta
-    3.Reagendar uma consulta
-    4.Consulta de parcelas pendentes 
-    5.Solicitar atestado
-    6.Desejo falar diretamente com uma atendente`
+    1. Serviços oferecidos
+    2. Agendar uma consulta
+    3. Reagendar uma consulta
+    4. Consulta de parcelas pendentes 
+    5. Solicitar atestado
+    6. Desejo falar diretamente com uma atendente`
   }
 }
 
@@ -23,9 +23,14 @@ export const servicesOffered = {
   templateId: 2,
   body: `
 Atualmente em nosso consultório trabalhamos com:
-  Clareamento dos dentes
-  Prótese dentária
-  Aparelhos
+
+  🦷 Remoção de cáries
+  🦷 Prótese dentária
+  🦷 Manutenção de placa/aparelho fixo
+  🦷 Lentes dentárias
+  🦷 Retirada de sizos
+  🦷 Limpeza e raspagem
+  🦷 Tratamentos gerais
 
 Ficou interessado em algum serviço ? Deseja marcar uma consulta ?
   1. Sim
@@ -37,9 +42,14 @@ export const scheduleConsultation = {
   templateId: 3,
   body: `
 Para qual serviço você deseja marcar uma consulta ?
-  1. Clareamento dos dentes
+
+  1. Remoção de cáries
   2. Prótese dentária
-  3. Aparelhos`
+  3. Manutenção de placa/aparelho fixo
+  4. Lentes dentárias
+  5. Retirada de sizos
+  6. Limpeza e raspagem
+  7. Outros`
 }
 
 export const enterYourNumberForSchedule = {
@@ -70,7 +80,7 @@ Não encontrei nenhum atestado em meu ficheiro, posso te passar para a atendente
 
 export const redirectToAttendant = {
   templateId: 8,
-  body: `Aguarde um momento, vou chamar uma atendente para você :D`
+  body: `Aguarde um momento, vou chamar uma atendente para você 👩‍💻`
 }
 
 export const enterYourDateForSchedule = {

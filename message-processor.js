@@ -162,5 +162,8 @@ export function handleMessage(choice, lastTemplateId) {
     return scheduleSuccess
   }
 
-  throw new Error('flow error')
+  return {
+    templateId: 1,
+    body: `lastTemplateId: ${lastTemplateId} // choice: ${choice} // ↩️ fluxo resetado`
+  }
 }
