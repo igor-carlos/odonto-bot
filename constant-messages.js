@@ -9,7 +9,7 @@ export const firstMessage = (needGreetings) => {
   return {
     templateId: 1,
     body: `
-  ${greeting}Escolha uma das opções abaixo:
+  ${greeting ? greeting : ''}Escolha uma das opções abaixo:
     1.Serviços oferecidos
     2.Agendar uma consulta
     3.Reagendar uma consulta
@@ -92,7 +92,7 @@ export const scheduleSuccess = {
 
 export const enterYourNumberForReschedule = {
   templateId: 12,
-  body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+  body: `Me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
 }
 
 export const enterYourDateForReschedule = {
@@ -107,5 +107,40 @@ export const enterYourHourForReschedule = {
 
 export const enterYourNumberForFindPendingInstallmentInquiries = {
   templateId: 15,
-  body: `Estamos quase lá, agora me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+  body: `Me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+}
+
+export const finishingOne = {
+  templateId: 16,
+  body: "👋 Até logo !"
+}
+
+export const numberFailureSchedule = {
+  templateId: 17,
+  body: `Não consegui entender o número no seu celular, digite-o novamente, sem pontuações e sem espaços. Por exemplo: 35912345678`
+}
+
+export const numberFailureReschedule = {
+  templateId: 18,
+  body: `Não consegui entender o número no seu celular, digite-o novamente, sem pontuações e sem espaços. Por exemplo: 35912345678`
+}
+
+export const dateFailureSchedule = {
+  templateId: 19,
+  body: 'Não consegui entender a data digitada, digite-o novamente, separadas por "/". Por exemplo 10/08/2022'
+}
+
+export const dateFailureReschedule = {
+  templateId: 20,
+  body: 'Não consegui entender a data digitada, digite-o novamente, separadas por "/". Por exemplo 10/08/2022'
+}
+
+export const hourFailureSchedule = {
+  templateId: 21,
+  body: 'Não consegui entender o horário que você digitou, digite-o novamente separado com ":". Por exemplo: 16:30'
+}
+
+export const hourFailureReschedule = {
+  templateId: 22,
+  body: 'Não consegui entender o horário que você digitou, digite-o novamente separado com ":". Por exemplo: 16:30'
 }

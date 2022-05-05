@@ -1,7 +1,7 @@
 import express from 'express'
 import twilio from 'twilio'
 import { handleMessage } from './message-processor.js'
-import { firstMessage } from './constant-messages.js'
+import { finishingOne, firstMessage } from './constant-messages.js'
 
 import redis from 'redis'
 
@@ -33,11 +33,14 @@ app.post("/message/receive", async function (req, res) {
     lastDate = lastInteractionObj.lastDate
   }
 
+  const finishings = [
+    finishingOne.templateId
+  ]
+
   let reply
-  if (!lastTemplateId || (lastDate - new Date()) >= 1.8e+7) {
+  if (!lastTemplateId || finishings.includes(lastTemplateId) || (lastDate - new Date()) >= 1.8e+7) {
     reply = firstMessage()
   } else {
-
     reply = handleMessage(
       choice.length <= 2 ? Number(choice) : choice,
       Number(lastTemplateId))
@@ -59,5 +62,5 @@ app.post("/message/receive-status", function (req, res) {
 })
 
 app.listen(3000, () => {
-  console.info("server running in 3000")
+  console.info("🔥 server running in 3000")
 })

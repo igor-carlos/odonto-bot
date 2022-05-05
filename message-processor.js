@@ -9,14 +9,26 @@ import {
   enterYourDateForSchedule,
   enterYourHourForSchedule,
   scheduleSuccess,
+  enterYourNumberForReschedule,
   enterYourHourForReschedule,
   enterYourDateForReschedule,
-  enterYourNumberForFindPendingInstallmentInquiries
+  enterYourNumberForFindPendingInstallmentInquiries,
+  finishingOne,
+  numberFailureReschedule,
+  numberFailureSchedule,
+  dateFailureReschedule,
+  dateFailureSchedule,
+  hourFailureSchedule,
+  hourFailureReschedule
 } from './constant-messages.js'
+import { isValidCellNumber, isValidDate, isValidHour } from './helpers.js'
 
 export function handleMessage(choice, lastTemplateId) {
-  console.log('🔵 lastTemplateId =>', lastTemplateId)
-  console.log('🟠 choice =>', choice)
+
+  console.log('')
+  console.log('lastTemplateId =>', lastTemplateId)
+  console.log('choice =>', choice)
+  console.log('')
 
   if (lastTemplateId === 1) {
     if (choice === 1) return servicesOffered
@@ -34,12 +46,15 @@ export function handleMessage(choice, lastTemplateId) {
   }
 
   if (lastTemplateId === 3) {
-    console.log(`O usuário escolheu a opção de consuta ${choice}`)
+    console.info(`O usuário escolheu a opção de consuta ${choice}`)
     return enterYourNumberForSchedule
   }
 
   if (lastTemplateId === 4) {
-    console.log(`O número do usuário é ${choice}`)
+    console.info(`O número do usuário é ${choice}`)
+    if (!isValidCellNumber(choice)) {
+      return numberFailureSchedule
+    }
     return enterYourDateForSchedule
   }
 
@@ -54,41 +69,97 @@ export function handleMessage(choice, lastTemplateId) {
   }
 
   if (lastTemplateId === 9) {
-    console.log(`A data escolhida pelo usuário é ${choice}`)
+    console.info(`A data escolhida pelo usuário é ${choice}`)
+    if (!isValidDate(choice)) {
+      return dateFailureSchedule
+    }
     return enterYourHourForSchedule
   }
 
   if (lastTemplateId === 10) {
-    console.log(`O horario escolhido pelo usuário foi ${choice}`)
+    console.info(`O horario escolhido pelo usuário foi ${choice}`)
+    if (!isValidHour(choice)) {
+      return hourFailureSchedule
+    }
     return scheduleSuccess
   }
 
   if (lastTemplateId === 11) {
     if (choice === 1) {
-      console.log("resetar mensagens")
-      return firstMessage;
+      return finishingOne;
     }
     if (choice === 2) return redirectToAttendant
   }
 
   if (lastTemplateId === 12) {
-    console.log(`O celular do usuário que quer remarcar uma consulta é ${choice}`)
+    console.info(`O celular do usuário que quer remarcar uma consulta é ${choice}`)
+    if (!isValidCellNumber(choice)) {
+      return numberFailureReschedule
+    }
     return enterYourDateForReschedule
   }
 
   if (lastTemplateId === 13) {
-    console.log(`A data que o usuário quer remarcar a consulta é para ${choice}`)
+    console.info(`A data que o usuário quer remarcar a consulta é para ${choice}`)
+    if (!isValidDate(choice)) {
+      return dateFailureReschedule
+    }
     return enterYourHourForReschedule
   }
 
   if (lastTemplateId === 14) {
-    console.log(`O horário que o usuário quer remarcar sua consulta é de ${choice}`)
+    console.info(`O horário que o usuário quer remarcar sua consulta é de ${choice}`)
+    if (!isValidHour(choice)) {
+      return hourFailureReschedule
+    }
     return scheduleSuccess
   }
 
   if (lastTemplateId === 15) {
-    console.log(`O número do usuário que quer consultar as contas pendentes é ${choice}`)
+    console.info(`O número do usuário que quer consultar as contas pendentes é ${choice}`)
     return pendingInstallmentInquiries
+  }
+
+  if (lastTemplateId === 17) {
+    if (!isValidCellNumber(choice)) {
+      return numberFailureSchedule
+    }
+    return enterYourDateForSchedule
+  }
+
+  if (lastTemplateId === 18) {
+    if (!isValidCellNumber(choice)) {
+      return numberFailureReschedule
+    }
+    return enterYourDateForReschedule
+  }
+
+  if (lastTemplateId === 19) {
+    if (!isValidDate(choice)) {
+      return dateFailureSchedule
+    }
+    return enterYourHourForSchedule
+  }
+
+  if (lastTemplateId === 20) {
+    if (!isValidDate(choice)) {
+      return dateFailureReschedule
+    }
+    return enterYourHourForReschedule
+  }
+
+  if (lastTemplateId === 21) {
+    if (!isValidHour(choice)) {
+      return hourFailureSchedule
+    }
+    return scheduleSuccess
+  }
+
+  if (lastTemplateId === 22) {
+    if (!isValidHour(choice)) {
+      return hourFailureReschedule
+    }
+    return scheduleSuccess
   }
 
   throw new Error('flow error')
