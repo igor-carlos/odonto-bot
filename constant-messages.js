@@ -1,21 +1,25 @@
+import { getNextWeekDate } from './helpers.js'
+
 export const firstMessage = (needGreetings) => {
   let greeting
   if (needGreetings === undefined || needGreetings === null) {
     const hours = new Date().getHours()
-    if (hours < 12) greeting = "Olá, bom dia, é um prazer falar com você! "
-    if (hours >= 12 && hours <= 18) greeting = "Olá, boa tarde, é um prazer falar com você! "
-    if (hours > 18) greeting = "Olá, boa noite, é um prazer falar com você! "
+    if (hours < 12) greeting = "Olá, bom dia, é um prazer falar com você! 👋"
+    if (hours >= 12 && hours <= 18) greeting = "Olá, boa tarde, é um prazer falar com você! 👋"
+    if (hours > 18) greeting = "Olá, boa noite, é um prazer falar com você! 👋"
   }
   return {
     templateId: 1,
     body: `
-  ${greeting ? greeting : ''}Escolha uma das opções abaixo:
+  ${greeting ? greeting : ''}
+Escolha uma das opções abaixo:
     1. Serviços oferecidos
     2. Agendar uma consulta
     3. Reagendar uma consulta
     4. Consulta de parcelas pendentes 
     5. Solicitar atestado
-    6. Desejo falar diretamente com uma atendente`
+    6. Planos odontológicos aceitos
+    7. Desejo falar diretamente com uma atendente`
   }
 }
 
@@ -88,31 +92,46 @@ export const enterYourDateForSchedule = {
   body: `Informe a data em que você quer marcar sua consulta, ex: 04/10/2022`
 }
 
-export const enterYourHourForSchedule = {
-  templateId: 10,
-  body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
+export const enterYourHourForSchedule = (scheduledAppointmentDate) => {
+  return {
+    templateId: 10,
+    body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`,
+    scheduledAppointmentDate
+  }
 }
 
-export const scheduleSuccess = {
-  templateId: 11,
-  body: `Tudo certo!, irei repassar essas infomações para o consultório e logo mais confirmarei sua consulta, qualquer dúvida estou a disposição.
+export const scheduleSuccess = (scheduledAppointmentTime) => {
+  return {
+    templateId: 11,
+    body: `Tudo certo!, irei repassar essas infomações para o consultório e logo mais confirmarei sua consulta, qualquer dúvida estou a disposição.
     1. Ok, entendido (finalizar conversa)
-    2. Não entendi muito bem, quero falar com a atendente`
+    2. Não entendi muito bem, quero falar com a atendente`,
+    scheduledAppointmentTime
+  }
 }
 
 export const enterYourNumberForReschedule = {
   templateId: 12,
-  body: `Me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
+  body: `Vou verificar sua consulta pendente mais próxima !
+Me informe seu celular com ddd e sem pontuações como o exemplo a seguir: 35943211234`
 }
 
-export const enterYourDateForReschedule = {
-  templateId: 13,
-  body: `Informe a data em que você quer marcar sua consulta, ex: 04/10/2022`
+export const enterYourDateForReschedule = (scheduledAppointmentDate, scheduledAppointmentTime) => {
+  console.log('🔵', scheduledAppointmentDate)
+  console.log('🔵', scheduledAppointmentTime)
+  return {
+    templateId: 13,
+    body: `Verifiquei aqui que você tem uma consulta marcada pro dia ${scheduledAppointmentDate} às ${scheduledAppointmentTime}
+  Informe a data em que você quer marcar sua consulta, ex: 04/12/2022`,
+  }
 }
 
-export const enterYourHourForReschedule = {
-  templateId: 14,
-  body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`
+export const enterYourHourForReschedule = (scheduledAppointmentDate) => {
+  return {
+    templateId: 14,
+    body: `Informe o horário que deseja realizar sua consulta, ex: 10:30`,
+    scheduledAppointmentDate
+  }
 }
 
 export const enterYourNumberForFindPendingInstallmentInquiries = {
@@ -153,4 +172,20 @@ export const hourFailureSchedule = {
 export const hourFailureReschedule = {
   templateId: 22,
   body: 'Não consegui entender o horário que você digitou, digite-o novamente separado com ":". Por exemplo: 16:30'
+}
+
+export const dentalPlans = {
+  templateId: 23,
+  body: `Atualmente trabalhamos com os convênios:
+📄 OdontoPlax
+📄 Unimed
+📄 Bradesco Dental
+
+1. Voltar ao menu anterior
+2. Desejo falar com a atendente`
+}
+
+export const firstInteractionFail = {
+  templateId: 1,
+  body: `Não entendi sua escolha, escolha a opção de forma numérica, por exemplo: 1`
 }

@@ -19,16 +19,21 @@ import {
   dateFailureReschedule,
   dateFailureSchedule,
   hourFailureSchedule,
-  hourFailureReschedule
+  hourFailureReschedule,
+  dentalPlans,
+  firstInteractionFail
 } from './constant-messages.js'
 import { isValidCellNumber, isValidDate, isValidHour } from './helpers.js'
 
-export function handleMessage(choice, lastTemplateId) {
+export function handleMessage(choice, lastTemplateId, scheduledAppointmentDate, scheduledAppointmentTime) {
 
   console.log('')
   console.log('lastTemplateId =>', lastTemplateId)
   console.log('choice =>', choice)
   console.log('')
+
+  console.log('👽', scheduledAppointmentDate)
+  console.log('👽', scheduledAppointmentTime)
 
   if (lastTemplateId === 1) {
     if (choice === 1) return servicesOffered
@@ -36,7 +41,9 @@ export function handleMessage(choice, lastTemplateId) {
     if (choice === 3) return enterYourNumberForReschedule
     if (choice === 4) return enterYourNumberForFindPendingInstallmentInquiries
     if (choice === 5) return requestAttest
-    if (choice === 6) return redirectToAttendant
+    if (choice === 6) return dentalPlans
+    if (choice === 7) return redirectToAttendant
+    return firstInteractionFail
   }
 
   if (lastTemplateId === 2) {
@@ -60,7 +67,7 @@ export function handleMessage(choice, lastTemplateId) {
 
   if (lastTemplateId === 6) {
     if (choice === 1) return redirectToAttendant
-    if (choice === 2) return firstMessage(false)
+    if (choice === 2) return finishingOne
   }
 
   if (lastTemplateId === 7) {
@@ -73,7 +80,7 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidDate(choice)) {
       return dateFailureSchedule
     }
-    return enterYourHourForSchedule
+    return enterYourHourForSchedule(choice)
   }
 
   if (lastTemplateId === 10) {
@@ -81,7 +88,7 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidHour(choice)) {
       return hourFailureSchedule
     }
-    return scheduleSuccess
+    return scheduleSuccess(choice)
   }
 
   if (lastTemplateId === 11) {
@@ -96,7 +103,7 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidCellNumber(choice)) {
       return numberFailureReschedule
     }
-    return enterYourDateForReschedule
+    return enterYourDateForReschedule(scheduledAppointmentDate, scheduledAppointmentTime)
   }
 
   if (lastTemplateId === 13) {
@@ -104,7 +111,7 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidDate(choice)) {
       return dateFailureReschedule
     }
-    return enterYourHourForReschedule
+    return enterYourHourForReschedule(choice)
   }
 
   if (lastTemplateId === 14) {
@@ -112,7 +119,7 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidHour(choice)) {
       return hourFailureReschedule
     }
-    return scheduleSuccess
+    return scheduleSuccess(choice)
   }
 
   if (lastTemplateId === 15) {
@@ -131,14 +138,14 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidCellNumber(choice)) {
       return numberFailureReschedule
     }
-    return enterYourDateForReschedule
+    return enterYourDateForReschedule(scheduledAppointmentDate, scheduledAppointmentTime)
   }
 
   if (lastTemplateId === 19) {
     if (!isValidDate(choice)) {
       return dateFailureSchedule
     }
-    return enterYourHourForSchedule
+    return enterYourHourForSchedule(choice)
   }
 
   if (lastTemplateId === 20) {
@@ -152,14 +159,19 @@ export function handleMessage(choice, lastTemplateId) {
     if (!isValidHour(choice)) {
       return hourFailureSchedule
     }
-    return scheduleSuccess
+    return scheduleSuccess(choice)
   }
 
   if (lastTemplateId === 22) {
     if (!isValidHour(choice)) {
       return hourFailureReschedule
     }
-    return scheduleSuccess
+    return scheduleSuccess(choice)
+  }
+
+  if (lastTemplateId === 23) {
+    if (choice === 1) return firstMessage(false)
+    if (choice === 2) return redirectToAttendant
   }
 
   return {

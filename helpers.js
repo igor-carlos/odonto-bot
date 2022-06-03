@@ -9,3 +9,9 @@ export function isValidDate(date) {
 export function isValidHour(hour) {
   return (hour[2] === ':')
 }
+
+export function getNextWeekDate() {
+  const now = new Date()
+  now.setDate(now.getDate() + 7)
+  return now.toLocaleDateString('pt-br')
+}
